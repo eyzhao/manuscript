@@ -1,0 +1,47 @@
+\documentclass[12pt, letterpaper]{article}
+
+    \usepackage[margin=1in]{geometry}
+    \usepackage{graphicx, hyperref, amsmath, amssymb, amsfonts, booktabs}
+    \usepackage[compact, small]{titlesec}
+    \usepackage{enumerate}
+    \usepackage[labelfont=bf, font=small, margin=0.5in]{caption}
+    \usepackage{longtable}
+
+    \makeatletter
+    \g@addto@macro\@floatboxreset\centering
+    \makeatother
+
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0em}
+
+    \clubpenalty = 1000
+    \widowpenalty = 1000
+
+    \everymath{\displaystyle}
+
+    \newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+    \newcommand{\gene}[1]{\textit{#1}}
+
+    \usepackage{setspace}
+    \usepackage{siunitx}
+    \usepackage{multirow}
+
+    %\usepackage[scaled]{helvet}
+    %\renewcommand*\familydefault{\sfdefault}
+    %\renewcommand*\rmdefault{\sfdefault}
+    %\usepackage[T1]{fontenc}
+
+    \usepackage[T1]{fontenc}
+    \usepackage{kpfonts,baskervald}
+
+    %\renewcommand{\baselinestretch}{2}    % to make abstract fit in title page
+
+    \DeclareSIUnit\molar{\textsc{m}}
+
+%% --------- MAIN DOCUMENT --------- %%
+
+\begin{document}
+
+$body$
+
+\end{document}

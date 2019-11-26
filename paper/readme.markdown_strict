@@ -1,0 +1,38 @@
+# $title$
+
+$for(coauthor)$
+$coauthor.name$<sup>$coauthor.affiliation$</sup>, 
+$endfor$
+
+$for(affiliation)$
+<sup>$affiliation.index$</sup> $affiliation.name$ <br />
+$endfor$
+
+**Running title:** $runningtitle$
+
+**Keywords:** $keywords$
+
+**Acknowledgements:** $acknowledgements$
+
+**Conflicts of Interest:** $conflictofinterest$
+
+**Corresponding Author:** $correspondingauthor$, $correspondingphone$, $correspondingemail$, $correspondingaddress$
+
+# Abstract
+
+<!--
+**Purpose:** $abstract-purpose$
+
+**Experimental Design:** $abstract-experimental-design$
+
+**Results:** $abstract-results$
+
+**Conclusions:** $abstract-conclusions$
+-->
+
+$abstract$
+
+# Introduction
+
+$body$
+

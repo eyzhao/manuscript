@@ -1,0 +1,66 @@
+<html>
+    <head>
+
+    <style>
+        container {
+            width = 1000px
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+
+    $if(math)$
+      $math$
+    $endif$
+
+    </head>
+
+    <body>
+
+        <div id='container'>
+
+            <h1>$title$</h1>
+
+            <p>
+                $for(coauthor)$
+                $coauthor.name$<sup>$coauthor.affiliation$</sup>, 
+                $endfor$
+            </p>
+
+            <p>
+                $for(affiliation)$
+                <sup>$affiliation.index$</sup> $affiliation.name$ <br />
+                $endfor$
+            </p>
+
+            <p>
+                <strong>Running title:</strong> $runningtitle$
+            </p>
+
+            <p>
+                <strong>Keywords:</strong> $keywords$
+            </p>
+
+            <p>
+                <strong>Acknowledgements:</strong> $acknowledgements$
+            </p>
+
+            <p>
+                <strong>Conflicts of Interest:</strong> $conflictofinterest$
+            </p>
+
+            <p>
+                <strong>Corresponding Author:</strong> $correspondingauthor$, $correspondingphone$, $correspondingemail$, $correspondingaddress$
+            </p>
+
+            <h1>Abstract</h1>
+
+            $abstract$
+
+            $body$
+
+        </div>
+    </body>
+</html>

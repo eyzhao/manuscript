@@ -1,0 +1,12 @@
+figures: 
+    - timing-bias-aging:
+        title: Aging-associated mutation signatures were early arising and enriched in colorectal and esophageal cancers.
+        src: figures/timing_bias_aging-1.png
+        caption: >
+            (A) The temporal dissection of mutation signatures 1 and M1 associated with aging-related processes
+            revealed a bias towards early occurrence.
+            (B) By contrast, signature 5, which has previously also been associated with aging, was late-occurring
+            in cancers with signature 5 elevation.
+            (C) Aging-related signatures were ubiquitous across cancer types but particularly elevated in colorectal
+            and esophageal cancers.
+            (D) Signature 5 was particularly elevated in head & neck, esophageal, and ovarian cancers.

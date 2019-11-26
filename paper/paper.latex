@@ -1,0 +1,116 @@
+\documentclass[12pt, letterpaper]{article}
+
+    \usepackage[margin=1in]{geometry}
+    \usepackage{graphicx, hyperref, amsmath, amssymb, amsfonts, booktabs}
+    \usepackage[compact, small]{titlesec}
+    \usepackage{enumerate}
+    \usepackage[labelfont=bf, font=small, margin=0.5in]{caption}
+
+    % Place all figures at the end
+    %\usepackage[nomarkers,figuresonly,nofiglist]{endfloat}
+
+    % Table of contents
+    \usepackage[titles]{tocloft}
+    \setlength{\cftbeforesecskip}{-.5ex}
+    \setlength{\cftbeforesubsecskip}{-.9ex}
+    \setlength{\cftbeforesubsubsecskip}{-.9ex}
+    %%
+
+    \makeatletter
+    \g@addto@macro\@floatboxreset\centering
+    \makeatother
+
+    \setlength{\parskip}{1em}
+    \setlength{\parindent}{0em}
+
+    \clubpenalty = 1000
+    \widowpenalty = 1000
+
+    \everymath{\displaystyle}
+
+    \newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+    \newcommand{\gene}[1]{\textit{#1}}
+
+    \usepackage[numbers,super]{natbib}
+    \usepackage{setspace}
+    \usepackage{siunitx}
+    \usepackage{multirow}
+
+    %\usepackage[scaled]{helvet}
+    %\renewcommand*\familydefault{\sfdefault}
+    %\renewcommand*\rmdefault{\sfdefault}
+    %\usepackage[T1]{fontenc}
+
+    \usepackage[T1]{fontenc}
+    \usepackage{kpfonts,baskervald}
+
+    %\renewcommand{\baselinestretch}{2}    % to make abstract fit in title page
+
+    \DeclareSIUnit\molar{\textsc{m}}
+
+    \usepackage{lineno}
+    \linenumbers
+
+%% --------- MAIN DOCUMENT --------- %%
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace{1em}
+        {\Large\bfseries $title$ \par}
+        \vspace{1em}
+        {\large \today\par}
+        \vspace{1em}
+        {
+            $for(coauthor)$
+            $coauthor.name$\textsuperscript{$coauthor.affiliation$}, 
+            $endfor$
+        \par}
+        \vspace{1em}
+    \end{center}
+    {
+        $for(affiliation)$
+        \textsuperscript{$affiliation.index$} $affiliation.name$ \\
+        $endfor$
+    \par}
+    \vspace{1em}
+    {\textbf{Running title:} $runningtitle$ \par}
+    \vspace{1em}
+    {\textbf{Keywords:} $keywords$ \par}
+    \vspace{1em}
+    {\textbf{Acknowledgements:} $acknowledgements$ \par}
+    \vspace{1em}
+    {\textbf{Conflicts of Interest:} $conflictofinterest$ \par}
+    \vspace{1em}
+    {\textbf{Corresponding Author:} $correspondingauthor$, $correspondingphone$, $correspondingemail$. $correspondingaddress$ \par}
+
+% Bottom of the page
+\end{titlepage}
+
+\newpage
+
+\doublespacing
+
+\textbf{Abstract}
+
+%\textbf{Purpose:} $abstract-purpose$
+
+%\textbf{Experimental Design:} $abstract-experimental-design$
+
+%\textbf{Results:} $abstract-results$
+
+%\textbf{Conclusions:} $abstract-conclusions$
+
+$abstract$
+
+\newpage
+
+\section{Introduction}
+
+$body$
+
+\bibliographystyle{naturemag}
+\bibliography{library}
+
+\end{document}

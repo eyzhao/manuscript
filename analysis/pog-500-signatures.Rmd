@@ -1,0 +1,112 @@
+---
+title: "POG 500 Signatures"
+author: "Eric Zhao"
+date: "November 26, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.path = 'figures/', dev = c('png', 'pdf'), dpi = 300)
+
+get_os <- function(){
+  sysinf <- Sys.info()
+  if (!is.null(sysinf)){
+    os <- sysinf['sysname']
+    if (os == 'Darwin')
+      os <- "osx"
+  } else { ## mystery machine
+    os <- .Platform$OS.type
+    if (grepl("^darwin", R.version$os))
+      os <- "osx"
+    if (grepl("linux-gnu", R.version$os))
+      os <- "linux"
+  }
+  tolower(os)
+}
+
+library(tidyverse)
+library(foreach)
+library(ggdendro)
+library(viridis)
+library(cowplot)
+library(pander)
+
+panderOptions('table.style', 'rmarkdown')
+panderOptions('table.split.table', 1000)
+panderOptions('digits', 2)
+
+if (get_os() == 'linux') {
+  devtools::load_all('scripts/SignIT')
+} else if (get_os() == 'osx') {
+  devtools::load_all('scripts/SignIT-osx')
+} else if (get_os() == 'windows') {
+  devtools::load_all('scripts/SignIT')
+}
+
+source('analysis_scripts/plot_signature.R')
+source('analysis_scripts/plot_cohort_comparison.R')
+source('analysis_scripts/plot_timing_bias.R')
+source('analysis_scripts/plot_exposure.R')
+source('analysis_scripts/polarBarPlot.R')
+
+cosine_similarity <- function(x, y) {
+  (x %*% y) / (sqrt(sum(x^2)) * sqrt(sum(y^2)))
+}
+
+MEGABASE_COUNT = 3234.83
+
+tables <- list()
+```
+
+
+# End Matter
+
+```{r tables_variables}
+variables <- list(
+  'example-variable' = 42,
+  'megabase-count' = MEGABASE_COUNT
+)
+
+#anon_vars = anonymization %>%
+#  plyr::dlply('patient', function(z) {z$anon})
+#names(anon_vars) <- sprintf('%s-anon', names(anon_vars))
+#variables <- c(variables, anon_vars); variables <- variables[unique(names(variables))];
+
+##############
+### Tables ###
+##############
+
+is_supplemental <- sapply(tables, function(z) {z$supplemental})
+main_table_names <- names(which(!is_supplemental))
+supplemental_table_names <- names(which(is_supplemental))
+
+tables_out <- sapply(main_table_names, function(id) {
+  t <- tables[[id]]$table
+  c <- paste0('Table: ', tables[[id]]$caption, ' {#tbl:', id, '}')
+  return(paste0(t, c))
+})
+
+supplemental_tables_out <- sapply(supplemental_table_names, function(id) {
+  idx <- which(supplemental_table_names == id)
+  c <- paste0('Supplementary Table ', idx, ': ', tables[[id]]$caption)
+  t <- tables[[id]]$table
+  variables[paste('tbl', id, 'idx', sep = '-')] <<- as.character(idx)
+  return(paste0(c, t, '\n\n\\clearpage\n\n'))
+})
+
+#####################
+### Write to File ###
+#####################
+
+write_lines(c('# Tables', tables_out), path = 'tables.md')
+write_lines(c('# Supplemental Tables', supplemental_tables_out, '', ''), path = 'supplemental_tables.md')
+
+variables_char = sapply(names(variables), function(name) {paste(name, variables[[name]], sep = ': ')})
+
+write_lines(variables_char, 'variables.yml')
+
+###########################
+### Write Output Tables ###
+###########################
+
+```
